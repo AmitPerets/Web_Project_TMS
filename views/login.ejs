@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+</head>
+
+<body>
+    <div class="row mt-5">
+        <div class="col-md-6 m-auto">
+            <div class="card card-body">
+                <!-- Login Page Header -->
+                <h1 class="text-center bg-warning text-light mb-3">
+                    Login Page
+                </h1>
+
+                <!-- Display validation errors -->
+                <% if(locals.errors){ %> <% errors.forEach(function(error) { %>
+                <div class="alert alert-dismissible alert-danger">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    <p class="mb-0"><%= error.msg %></p>
+                </div>
+                <% }); %> <% } %>
+
+                <!-- Display success message -->
+                <% if(success_msg != ''){ %>
+                <div class="alert alert-dismissible alert-success">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    <p class="mb-0"><%= success_msg %></p>
+                </div>
+                <% } %>
+
+                <!-- Display error message -->
+                <% if(error != ''){ %>
+                <div class="alert alert-dismissible alert-danger">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    <p class="mb-0"><%= error %></p>
+                </div>
+                <% } %>
+
+                <!-- Login form -->
+                <form action="/users/login" method="POST">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            class="form-control"
+                            placeholder="Enter Email"
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            class="form-control"
+                            placeholder="Enter Password"
+                        />
+                    </div>
+                    <br>
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-warning btn-block col-12">
+                            Login
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Option to register if no account -->
+                <p class="lead mt-4">
+                    No Account? <a href="/users/register">Register</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
